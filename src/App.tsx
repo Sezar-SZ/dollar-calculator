@@ -114,22 +114,12 @@ function App() {
                                     </span>
                                     <span>تومان</span>
                                 </div>
-                                <div className="flex gap-1 items-center justify-start mt-4">
-                                    <span>با کارمزد: </span>
-                                    <span>
-                                        {(
-                                            parseInt(
-                                                removeCommas(
-                                                    values.dollarAmount
-                                                )
-                                            ) *
+                                {values.fee !== 0 && (
+                                    <div className="flex gap-1 items-center justify-start mt-4">
+                                        <span>با کارمزد: </span>
+                                        <span>
+                                            {(
                                                 parseInt(
-                                                    removeCommas(
-                                                        values.dollarPrice
-                                                    )
-                                                ) +
-                                            (values.fee *
-                                                (parseInt(
                                                     removeCommas(
                                                         values.dollarAmount
                                                     )
@@ -138,12 +128,24 @@ function App() {
                                                         removeCommas(
                                                             values.dollarPrice
                                                         )
-                                                    ))) /
-                                                100
-                                        ).toLocaleString()}
-                                    </span>
-                                    <span>تومان</span>
-                                </div>
+                                                    ) +
+                                                (values.fee *
+                                                    (parseInt(
+                                                        removeCommas(
+                                                            values.dollarAmount
+                                                        )
+                                                    ) *
+                                                        parseInt(
+                                                            removeCommas(
+                                                                values.dollarPrice
+                                                            )
+                                                        ))) /
+                                                    100
+                                            ).toLocaleString()}
+                                        </span>
+                                        <span>تومان</span>
+                                    </div>
+                                )}
                             </>
                         )}
                     </div>
@@ -184,23 +186,11 @@ function App() {
                                     </span>
                                     <span>دلار</span>
                                 </div>
-                                <div className="flex gap-1 items-center justify-start mt-4">
-                                    <span>با کارمزد: </span>
-                                    <span>
-                                        {(
-                                            Math.round(
-                                                parseInt(
-                                                    removeCommas(
-                                                        values.tomanAmount
-                                                    )
-                                                ) /
-                                                    parseInt(
-                                                        removeCommas(
-                                                            values.dollarPrice
-                                                        )
-                                                    )
-                                            ) +
-                                            (values.fee *
+                                {values.fee !== 0 && (
+                                    <div className="flex gap-1 items-center justify-start mt-4">
+                                        <span>با کارمزد: </span>
+                                        <span>
+                                            {(
                                                 Math.round(
                                                     parseInt(
                                                         removeCommas(
@@ -212,12 +202,26 @@ function App() {
                                                                 values.dollarPrice
                                                             )
                                                         )
-                                                )) /
-                                                100
-                                        ).toLocaleString()}
-                                    </span>
-                                    <span>دلار</span>
-                                </div>
+                                                ) +
+                                                (values.fee *
+                                                    Math.round(
+                                                        parseInt(
+                                                            removeCommas(
+                                                                values.tomanAmount
+                                                            )
+                                                        ) /
+                                                            parseInt(
+                                                                removeCommas(
+                                                                    values.dollarPrice
+                                                                )
+                                                            )
+                                                    )) /
+                                                    100
+                                            ).toLocaleString()}
+                                        </span>
+                                        <span>دلار</span>
+                                    </div>
+                                )}
                             </>
                         )}
                     </div>
