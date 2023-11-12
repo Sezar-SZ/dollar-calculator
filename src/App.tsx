@@ -56,6 +56,7 @@ function App() {
                             value={values.dollarPrice}
                             onChange={handleValueChange}
                         />
+                        تومان
                     </div>
                     <div>
                         <label>کارمزد صرافی: </label>
