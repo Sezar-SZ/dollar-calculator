@@ -7,7 +7,7 @@ import { englishFarsiNumbers } from "./utils";
 interface Values {
     dollarPrice: string;
     dollarAmount: string;
-    fee: number;
+    fee: string;
     tomanAmount: string;
 }
 
@@ -15,7 +15,7 @@ function App() {
     const [values, setValues] = useState<Values>({
         dollarPrice: "",
         dollarAmount: "",
-        fee: 5,
+        fee: "5",
         tomanAmount: "",
     });
 
@@ -33,6 +33,8 @@ function App() {
             });
         });
     }, []);
+
+    const feeValue = () => parseFloat(values.fee);
 
     const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValues({
@@ -84,9 +86,9 @@ function App() {
                                 <label>کارمزد صرافی: </label>
                                 <input
                                     type="text"
-                                    className="px-2 py-1 border rounded w-[40px]"
+                                    className="px-2 py-1 border rounded w-[60px]"
                                     onKeyPress={(event) => {
-                                        if (!/[0-9]/.test(event.key)) {
+                                        if (!/[0-9.]/.test(event.key)) {
                                             event.preventDefault();
                                         }
                                     }}
@@ -94,7 +96,7 @@ function App() {
                                     onChange={(e) =>
                                         setValues((prev) => ({
                                             ...prev,
-                                            fee: +e.target.value,
+                                            fee: e.target.value,
                                         }))
                                     }
                                 />{" "}
@@ -139,7 +141,7 @@ function App() {
                                             </span>
                                             <span>تومان</span>
                                         </div>
-                                        {values.fee !== 0 && (
+                                        {feeValue() !== 0 && (
                                             <div className="flex gap-1 items-center justify-start mt-4">
                                                 <span>با کارمزد: </span>
                                                 <span>
@@ -154,7 +156,7 @@ function App() {
                                                                     values.dollarPrice
                                                                 )
                                                             ) +
-                                                        (values.fee *
+                                                        (feeValue() *
                                                             (parseInt(
                                                                 removeCommas(
                                                                     values.dollarAmount
@@ -213,7 +215,7 @@ function App() {
                                             </span>
                                             <span>دلار</span>
                                         </div>
-                                        {values.fee !== 0 && (
+                                        {feeValue() !== 0 && (
                                             <div className="flex gap-1 items-center justify-start mt-4">
                                                 <span>با کارمزد: </span>
                                                 <span>
@@ -230,7 +232,7 @@ function App() {
                                                                     )
                                                                 )
                                                         ) +
-                                                        (values.fee *
+                                                        (feeValue() *
                                                             Math.round(
                                                                 parseInt(
                                                                     removeCommas(
