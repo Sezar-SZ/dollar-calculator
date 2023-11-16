@@ -34,7 +34,8 @@ function App() {
         });
     }, []);
 
-    const feeValue = () => parseFloat(values.fee);
+    const feeValue = () =>
+        isNaN(parseFloat(values.fee)) ? 0 : parseFloat(values.fee);
 
     const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValues({
